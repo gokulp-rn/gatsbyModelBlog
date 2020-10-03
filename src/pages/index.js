@@ -1,60 +1,39 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import styled from "styled-components";
+import { graphql } from "gatsby"
+import { Container } from "react-bootstrap"
 
-import Bio from "../components/bio"
+import BgImage from "../components/bgImage";
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+const Title = styled.h2`
+  padding-top: 10%;
+  font-size: 5rem;
+  color: white;
+`;
+
+const SubTitle = styled.h6`
+  color: white;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+
+  @media(min-width: 768px) {
+    margin-right: 25rem;
+  }
+`;
+
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
-
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <SEO title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
-  }
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
-      <Bio />
-      {posts.map(post => {
-        const title = post.frontmatter.title || post.fields.slug
-        return (
-          <article
-            key={post.fields.slug}
-            className="post-list-item"
-            itemScope
-            itemType="http://schema.org/Article"
-          >
-            <header>
-              <h2>
-                <Link to={post.fields.slug} itemProp="url">
-                  <span itemProp="headline">{title}</span>
-                </Link>
-              </h2>
-              <small>{post.frontmatter.date}</small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: post.frontmatter.description || post.excerpt,
-                }}
-                itemProp="description"
-              />
-            </section>
-          </article>
-        )
-      })}
+      <SEO title="Home" />
+      <BgImage fluid={data.allContentfulHome.edges[0].node.image.fluid} />
+      <Container>
+          <Title >Look at me!</Title>
+          <SubTitle className="ml-lg-10">Keep your thoughts positive because your thoughts become your words. Keep your words positive because your words become your behavior. Keep your behavior positive because your behavior becomes your habits. Keep your habits positive because your habits become your values. Keep your values positive because your values become your destiny. Mahatma Gandhi</SubTitle>
+      </Container>
     </Layout>
   )
 }
@@ -68,16 +47,16 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
+    allContentfulHome {
+      edges {
+        node {
+          id
+          image {
+            fluid {
+              ...GatsbyContentfulFluid
+            }
+            id
+          }
         }
       }
     }

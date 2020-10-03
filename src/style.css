@@ -1,4 +1,5 @@
 /* CSS Custom Properties Definitions */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 :root {
   --maxWidth-none: "none";
@@ -27,7 +28,7 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
   --spacing-32: 8rem;
-  --fontFamily-sans: Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
+  --fontFamily-sans: 'Roboto Mono', Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
@@ -81,6 +82,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--fontSize-1);
   color: var(--color-text);
+  background-color: var(--color-heading-black)!important;;
 }
 
 footer {
@@ -317,6 +319,102 @@ a:focus {
 
 .gatsby-highlight {
   margin-bottom: var(--spacing-8);
+}
+
+
+.modal-custom {
+  position: fixed;
+  z-index: 999;
+  width: 50%;
+  max-width: 800px;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+@media (min-width: 20em) {
+  .modal-custom {
+    width: 95%;
+  }
+}
+@media (min-width: 34em) {
+  .modal-custom {
+    width: 80%;
+  }
+}
+@media (min-width: 60em) {
+  .modal-custom {
+    width: 60%;
+  }
+}
+.modal-custom img {
+  width: 100%;
+  border: 5px solid #fff;
+}
+
+.modal-overlay {
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+}
+
+.modal-body a {
+  position: absolute;
+  display: inline;
+  color: #222;
+  text-decoration: none;
+  line-height: 36px;
+  font-size: 30px;
+  font-weight: lighter;
+  background: #fff;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+
+.modal-body .modal-close {
+  right: 0;
+  top: 0;
+  border-radius: 0 0 0 5px;
+}
+
+.modal-body .modal-next,
+.modal-body .modal-prev {
+  right: 0;
+  top: calc(50% - 25px);
+  border-radius: 5px 0 0 5px;
+  height: 50px;
+  line-height: 40px;
+  font-size: 60px;
+}
+
+.modal-body .modal-prev {
+  left: 0;
+  right: auto;
+  border-radius: 0 5px 5px 0;
+}
+
+.modal-body {
+  position: relative;
+}
+
+.footer-placement {
+  top: 80vh
+}
+
+.custom-img:hover {
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -webkit-transform: scale(1.2); 
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 /* Media queries */
