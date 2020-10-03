@@ -11,7 +11,8 @@ module.exports = {
       name: `Gokul P`,
       summary: `Developer who loves travelling`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`
+    description: `A starter blog demonstrating what Gatsby can do.`,
+    siteUrl: `https://modelblog.netlify.app/`
   },
   plugins: [
     {
